@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact on the Go</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <div class="header">
+    <h2>Contacts</h2>
+    <div id="header-buttons">
+      <button id="addBtn">Add Contact</button>
+      <button id="logoutBtn" style="display: none;">Logout</button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <ul id="contact-list"></ul>
+    <div id="emptyMessage" style="display:none;">No contacts added yet.</div>
+  </div>
+
+  <!-- Modal for Adding & Editing Contact -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <label for="nameInput">Name:</label>
+      <input type="text" id="nameInput" required>
+
+      <label for="phoneInput">Phone:</label>
+      <input type="text" id="phoneInput" required>
+
+      <label for="emailInput">Email:</label>
+      <input type="email" id="emailInput" required>
+
+      <div class="modal-buttons">
+        <button type="button" id="saveBtn">Save</button>
+        <button type="button" id="cancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Your CRUD script (with Edit/Delete & modal logic) -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>

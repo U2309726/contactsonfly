@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Signup</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+      margin: 100px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .auth-container input, .auth-container button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    .auth-container button {
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .auth-container button:hover {
+      background-color: #1976D2;
+    }
+    .auth-container p {
+      font-size: 14px;
+      text-align: center;
+    }
+    .auth-container span {
+      color: #2196F3;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="auth-container">
+  <h2 id="formTitle">Login</h2>
+  <input type="email" id="emailInput" placeholder="Email">
+  <input type="password" id="passwordInput" placeholder="Password">
+  <button id="authBtn">Login</button>
+  <p id="toggleText">Don't have an account? <span id="toggleLink">Sign Up</span></p>
+</div>
+
+<!-- Firebase Auth Logic -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+
+  // Your Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBRZdSNDkC2vq5TA5QYjNQtw-xUbWEye2Y",
+    authDomain: "contact-on-the-go.firebaseapp.com",
+    projectId: "contact-on-the-go",
+    storageBucket: "contact-on-the-go.firebasestorage.app",
+    messagingSenderId: "19775203867",
+    appId: "1:19775203867:web:e1918bb1215565da8be6be"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // DOM Elements
+  const authBtn = document.getElementById('authBtn');
+  const toggleLink = document.getElementById('toggleLink');
+  const formTitle = document.getElementById('formTitle');
+  const emailInput = document.getElementById('emailInput');
+  const passwordInput = document.getElementById('passwordInput');
+
+  let isLogin = true; // Start on Login
+
+  // Toggle Login <-> Signup
+  toggleLink.addEventListener('click', () => {
+    isLogin = !isLogin;
+    formTitle.textContent = isLogin ? "Login" : "Sign Up";
+    authBtn.textContent = isLogin ? "Login" : "Sign Up";
+    toggleLink.textContent = isLogin ? "Sign Up" : "Login";
+  });
+
+  // Auth Button Click
+  authBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    if (!email || !password) {
+      alert('Please enter email and password.');
+      return;
+    }
+
+    try {
+      if (isLogin) {
+        await signInWithEmailAndPassword(auth, email, password);
+      } else {
+        await createUserWithEmailAndPassword(auth, email, password);
+      }
+      // Success -> Go to Contacts App
+      window.location.href = "index.html";
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+</script>
+
+</body>
+</html>
