@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Contacts</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="header">
+    <h2>My Contacts</h2>
+    <div id="header-buttons">
+      <button id="addBtn">Add Contact</button>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <ul id="contact-list"></ul>
+    <p id="emptyMessage">No contacts yet. Start adding!</p>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <input type="text" id="nameInput" placeholder="Name" />
+      <input type="text" id="phoneInput" placeholder="Phone" />
+      <input type="email" id="emailInput" placeholder="Email" />
+      <div class="modal-buttons">
+        <button id="saveBtn">Save</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
