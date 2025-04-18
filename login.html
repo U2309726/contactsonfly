@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Contacts on the Go</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="auth.js"></script>
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Login / Sign Up</h2>
+    <input type="email" id="emailAuth" placeholder="Email" required />
+    <input type="password" id="passwordAuth" placeholder="Password" required />
+    <button id="loginBtnAuth">Login</button>
+    <button id="signupBtn" style="display: none;">Sign Up</button>
+    <div id="toggleText">
+      Already have an account? <span id="loginLink">Login</span>
+    </div>
+    <p id="authError" style="color: red;"></p>
+  </div>
+</body>
+</html>
